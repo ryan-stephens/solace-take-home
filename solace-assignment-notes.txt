@@ -1,0 +1,58 @@
+1 Hour Block Start: 10:15PM CST (context gathering, note taking, repo setup & database seed)
+
+1) Review Email & Notion Assignment Instructions
+	a) re-emphasize the goals:
+		- Learn as much as we can about how you think about code, improve existing code, and add features to a new code base.
+		- Require as little of your time as possible. By limiting this to 2 hours, we hope this is manageable with your busy schedule.
+		- Demonstrate your ability in our stack.
+	b) re-examine the background of the assignment
+		-table of all 'advocates', contains info about them which a 'patient' can search by to refine results for a best match
+		-initial version is built (in NextJs app)
+			-full of bugs, bad patterns, and performance pitfalls
+	c) summarize the expected process
+		-github repo initialized, connected to remote
+		-create several PRs against the main branch of my repo (this link showcasing multiple PRs is the deliverable)
+			-include PR description with reasoning for the changes & why it was an improvement on the previous code/implementation
+
+2) Perform Assignment Tasks
+	1. Fix any glaring bugs and anti patterns.
+	2. Improve the design UI/UX to make the experience better for prospective patients. We value design heavily at Solace so feel free to flex your skills in this area. The repo is set up with tailwind but feel free to use any styling framework you’d like.
+	3. Consider both frontend and backend performance improvements. Assume we have a database of hundreds of thousands of advocates we need to search through.
+	
+3) Review Expected Deliverables Ensuring 100% Completion
+	a) submit the assignment with a link to the cloned repo with the PRs of our changes (make it public)
+	b) Add any extra notes to the 'DISCUSSION.md', explaining any other improvements that I would make if we had the time. 
+	
+4) Download repo, install to folder location, npm install successful
+
+5) git init + connect remote, claude code init, start up docker engine, add rules for agent to follow
+
+6) enable database via code updates, push schema migrations to database
+
+7) verify locally that database records are loading and being displayed in the table
+
+	
+1 Hour Block End: 11:15PM CST (good stopping point, infrastructure in place for me to pick up and make valuable progress on this in the next and final 1 hour block)
+
+
+	
+	
+	
+	
+Notes:
+	-app is configured to return default list of advocates, README has instructions on configuring the database and seeding it with advocates
+	-**Please make all API calls to the NextJS backend and avoid Next server actions. We want to test your knowledge of both frontend and backend so assume that the API server is a separate application. We’ve kept this a full stack NextJS app for convenience. 
+	
+	
+PR Structure Ideas:
+	PR #1) Includes any and all changes necessary to get repo up and running with database connected
+	PR #2) Includes any and all changes around my initial pass of bug documentation and resolution
+	PR #3) Probably for more bugs after I thought I already got them all in the first pass :)
+	PR #4) Further improvements and UI/UX improvements with creative freedom (typically I would ensure my agent sticks with existing UI/UX design choices of the project)
+	
+	
+Agent Rulesets specific to Solace Values:
+- highly value good user experiences through great UI design, consistency across the app is key
+- high performance design and implementation is expected, backend must support a database with the potential for hundreds of thousands if not millions of records
+- reliability, scalability, and clean code is highly valued in any and all implementations
+- ensure that we are only making necessary changes, all changes or troubleshooting that we perform must be highly documented with reasoning for the change (report all documentation to the 'Take-Home-Change-Logs.md' which you should create if it doesn't exist or update if it does exist

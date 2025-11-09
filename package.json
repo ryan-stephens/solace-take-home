@@ -1,6 +1,6 @@
 {
   "name": "solace-candidate-assignment",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -12,6 +12,9 @@
     "seed": "node --loader esbuild-register/loader -r esbuild-register ./src/db/seed/index.ts"
   },
   "dependencies": {
+    "@tanstack/react-table": "^8.21.3",
+    "ag-grid-community": "^34.3.1",
+    "ag-grid-react": "^34.3.1",
     "drizzle-orm": "^0.32.1",
     "next": "^14.2.19",
     "postgres": "^3.4.4",
