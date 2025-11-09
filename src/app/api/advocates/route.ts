@@ -1,7 +1,7 @@
 import { sql } from "drizzle-orm";
 import { ilike, or } from "drizzle-orm";
 import db from "../../../db";
-import { advocates } from "../../../db/schema";
+import { advocates } from "@/db/schema";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);

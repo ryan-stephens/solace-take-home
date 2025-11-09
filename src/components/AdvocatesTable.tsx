@@ -39,6 +39,7 @@ interface AdvocatesTableProps {
 
 export default function AdvocatesTable({ onDataFetch }: AdvocatesTableProps) {
   const tableContainerRef = useRef<HTMLDivElement>(null);
+  const hasInitialized = useRef(false);
   const [rowData, setRowData] = useState<Advocate[]>([]);
   const [loading, setLoading] = useState(false);
   const [isSorting, setIsSorting] = useState(false);
@@ -113,6 +114,10 @@ export default function AdvocatesTable({ onDataFetch }: AdvocatesTableProps) {
 
   // Fetch available degrees and cities on component mount
   useEffect(() => {
+    // Prevent duplicate calls in development mode (React StrictMode)
+    if (hasInitialized.current) return;
+    hasInitialized.current = true;
+
     const fetchDegrees = async () => {
       try {
         const response = await fetch("/api/advocates/degrees");

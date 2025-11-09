@@ -1,4 +1,4 @@
-import { seedLargeDataset } from "../../../db/seed/generateLargeDataset";
+import { seedLargeDataset } from "@/db/seed/generateLargeDataset";
 
 export async function POST(request: Request) {
   try {

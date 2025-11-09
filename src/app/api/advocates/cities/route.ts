@@ -1,5 +1,5 @@
 import db from "../../../../db";
-import { advocates } from "../../../../db/schema";
+import { advocates } from "@/db/schema";
 
 export async function GET() {
   try {

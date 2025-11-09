@@ -1,6 +1,6 @@
 import { sql } from "drizzle-orm";
 import db from "../../../db";
-import { advocates } from "../../../db/schema";
+import { advocates } from "@/db/schema";
 
 export async function POST() {
   try {
