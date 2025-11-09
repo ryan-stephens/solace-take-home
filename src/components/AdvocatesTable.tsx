@@ -20,7 +20,7 @@ interface Advocate {
   degree: string;
   specialties: string[];
   yearsOfExperience: number;
-  phoneNumber: number;
+  phoneNumber: string;
   createdAt: string;
 }
 
@@ -81,38 +81,9 @@ export default function AdvocatesTable({ onDataFetch }: AdvocatesTableProps) {
   // Dynamic options from database
   const [availableDegrees, setAvailableDegrees] = useState<string[]>([]);
   const [availableCities, setAvailableCities] = useState<string[]>([]);
+  const [availableSpecialties, setAvailableSpecialties] = useState<string[]>([]);
 
-  // Available specialties list
-  const availableSpecialties = [
-    "Bipolar",
-    "LGBTQ",
-    "Medication/Prescribing",
-    "Suicide History/Attempts",
-    "General Mental Health (anxiety, depression, stress, grief, life transitions)",
-    "Men's issues",
-    "Relationship Issues (family, friends, couple, etc)",
-    "Trauma & PTSD",
-    "Personality disorders",
-    "Personal growth",
-    "Substance use/abuse",
-    "Pediatrics",
-    "Women's issues (post-partum, infertility, family planning)",
-    "Chronic pain",
-    "Weight loss & nutrition",
-    "Eating disorders",
-    "Diabetic Diet and nutrition",
-    "Coaching (leadership, career, academic and wellness)",
-    "Life coaching",
-    "Obsessive-compulsive disorders",
-    "Neuropsychological evaluations & testing (ADHD testing)",
-    "Attention and Hyperactivity (ADHD)",
-    "Sleep issues",
-    "Schizophrenia and psychotic disorders",
-    "Learning disorders",
-    "Domestic abuse",
-  ];
-
-  // Fetch available degrees and cities on component mount
+  // Fetch available degrees, cities, and specialties on component mount
   useEffect(() => {
     // Prevent duplicate calls in development mode (React StrictMode)
     if (hasInitialized.current) return;
@@ -140,8 +111,20 @@ export default function AdvocatesTable({ onDataFetch }: AdvocatesTableProps) {
       }
     };
 
+    const fetchSpecialties = async () => {
+      try {
+        const response = await fetch("/api/advocates/specialties");
+        const data = await response.json();
+        setAvailableSpecialties(data.specialties || []);
+      } catch (error) {
+        console.error("Error fetching specialties:", error);
+        setAvailableSpecialties([]);
+      }
+    };
+
     fetchDegrees();
     fetchCities();
+    fetchSpecialties();
   }, []);
 
   // Column definitions

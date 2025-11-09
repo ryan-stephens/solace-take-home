@@ -116,12 +116,12 @@ const randomSpecialties = (): string[] => {
   return Array.from(selected);
 };
 
-const generatePhoneNumber = (): number => {
-  // Generate a valid 10-digit US phone number
+const generatePhoneNumber = (): string => {
+  // Generate a valid 10-digit US phone number in formatted style
   const areaCode = randomInt(200, 999);
   const prefix = randomInt(200, 999);
   const lineNumber = randomInt(1000, 9999);
-  return parseInt(`${areaCode}${prefix}${lineNumber}`);
+  return `${areaCode}-${prefix}-${lineNumber}`;
 };
 
 // Generate advocates
