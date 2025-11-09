@@ -1,4 +1,4 @@
-1 Hour Block Start: 10:15PM CST (context gathering, note taking, repo setup & database seed)
+1st Hour Block Start: 10:15PM CST (context gathering, note taking, repo setup & database seed)
 
 1) Review Email & Notion Assignment Instructions
 	a) re-emphasize the goals:
@@ -32,11 +32,29 @@
 7) verify locally that database records are loading and being displayed in the table
 
 	
-1 Hour Block End: 11:15PM CST (good stopping point, infrastructure in place for me to pick up and make valuable progress on this in the next and final 1 hour block)
+1st Hour Block End: 11:15PM CST (good stopping point, infrastructure in place for me to pick up and make valuable progress on this in the next and final 1 hour block)
 
 
-	
-	
+2nd Hour Block Start: 11/9/2025 @ 2:15 AM CST
+
+1) UX Redesign of table to follow Solace styling
+
+2) Server side pagination + sorting of table data
+
+3) Search criteria inputs and manual search
+
+4) Specialties tooltip
+
+5) QA Testing and Validation
+
+6) Think of what I'd do with more time if I had it:
+    a) create reusable components and split the large table component into smaller components (table, search criteria, search results)
+    b) optimize search endpoint to ensure that it properly handles extremely large datasets + load testing
+    c) examine all code & refactor as needed to ensure that it is clean, readable, and maintainable
+    d) review all documentation we used while tracking the assignment task and create a final summary document with high impact and high value changes
+    e) playwright E2E tests
+
+2nd Hour Block End: 11/9/2025 @ 3:15 AM CST
 	
 	
 Notes:

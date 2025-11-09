@@ -283,8 +283,8 @@ Modified `drizzle.config.ts` to include a fallback connection string:
 
 ```typescript
 dbCredentials: {
-  url: process.env.DATABASE_URL || "postgresql://postgres:password@127.0.0.1:5432/solaceassignment",
-},
+  url: process.env.DATABASE_URL || "postgresql://postgres:password@127.0.0.1:5432/solaceassignment"
+}
 ```
 
 **Rationale**: Ensured the configuration would work even if environment variables weren't loading properly. This also helped confirm the issue wasn't with environment variable loading.
@@ -3959,3 +3959,128 @@ useEffect(() => {
 - Cleaner debugging experience
 - Reduced unnecessary database load
 - Performance optimized for scalability
+
+---
+
+## Change Log Entry #20: Enhanced .gitignore for Comprehensive File Exclusion
+
+**Date**: 2025-11-09
+**Type**: Configuration
+**Status**: Completed
+
+### What Changed
+Enhanced the existing  file to include additional patterns for files and directories that should not be tracked in version control, ensuring a cleaner repository with only necessary files.
+
+### Why This Was Necessary
+The original  file provided by Next.js was missing several important exclusions specific to this project:
+1. **Environment files**:  was not explicitly ignored (only ), which could lead to accidentally committing sensitive database credentials
+2. **IDE files**: No exclusions for common IDEs (VSCode, JetBrains, etc.) that developers might use
+3. **Database files**: Missing patterns for local database files and PostgreSQL data directories
+4. **Drizzle ORM**: No exclusions for Drizzle-generated directories
+5. **Windows OS files**: Missing Windows-specific system files like Thumbs.db and Desktop.ini
+6. **Docker overrides**: Missing docker-compose.override.yml which often contains local customizations
+
+### Details of Implementation
+
+**Added Sections**:
+
+1. **Enhanced Environment Variables** (.gitignore:31-36):
+   - Added explicit  exclusion to prevent committing DATABASE_URL and other secrets
+   - Kept all existing  patterns
+
+2. **IDEs and Editors** (.gitignore:45-55):
+   - VSCode workspace settings ()
+   - JetBrains IDEs ()
+   - Vim swap files (, , )
+   - Eclipse project files (, , )
+   - Sublime Text workspace files
+
+3. **OS Files** (.gitignore:57-65):
+   - Enhanced macOS exclusions (, , , )
+   - Windows thumbnail cache (, )
+   - Windows folder config ()
+
+4. **Database** (.gitignore:67-72):
+   - SQLite files (, , )
+   - PostgreSQL data directories (, )
+
+5. **Drizzle ORM** (.gitignore:74-76):
+   - Drizzle generated directories (, )
+
+6. **Docker** (.gitignore:78-80):
+   - Docker Compose override files for local customizations
+
+7. **Enhanced Logs** (.gitignore:82-89):
+   - Added  and 
+   - Added general  directory
+
+8. **Temporary Files** (.gitignore:91-94):
+   - Temporary file patterns (, )
+   - Cache directories ()
+
+### Reasoning for Each Addition
+
+- ** exclusion**: Critical for security - prevents accidentally committing database credentials (postgresql://postgres:password@localhost)
+- **IDE files**: Keeps personal editor configurations out of shared repo, reduces noise in git status
+- **Windows files**: Project is being developed on Windows (win32 OS), so Windows-specific excludes are essential
+- **Database directories**: Prevents committing local PostgreSQL data if someone runs DB without Docker volumes
+- **Drizzle directories**: Generated migration files should not be committed unless explicitly needed
+- **Docker overrides**: Developers often create local overrides for ports, volumes, etc.
+- **Cache/temp files**: Build tools and package managers create temporary files that don't belong in repo
+
+### Files Modified
+
+1. ****:
+   - Expanded from 37 lines to 95 lines
+   - Organized into 11 clear sections with comments
+   - Maintained all existing patterns (backward compatible)
+   - Added 50+ new patterns
+
+### Best Practices Followed
+
+1. **Comprehensive Coverage**: Covers multiple OS (Windows, macOS, Linux) and IDEs
+2. **Security First**: Explicit  exclusion to prevent credential leaks
+3. **Project-Specific**: Includes database and ORM-specific patterns for this stack
+4. **Well-Organized**: Clear section comments for maintainability
+5. **Future-Proof**: Covers common scenarios developers might encounter
+
+### Impact
+
+**Before**:
+- Risk of committing  with database credentials
+- IDE configuration files could pollute repository
+- Windows developers would see OS files in On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   .claude/settings.local.json
+	modified:   .gitignore
+
+no changes added to commit (use "git add" and/or "git commit -a")
+- Drizzle generated files might be accidentally committed
+
+**After**:
+- Comprehensive protection against sensitive file commits
+- Clean On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   .claude/settings.local.json
+	modified:   .gitignore
+
+no changes added to commit (use "git add" and/or "git commit -a") output regardless of IDE or OS
+- Database and build artifacts properly excluded
+- Professional, production-ready  configuration
+
+### Post-Implementation State
+
+-  now follows industry best practices for Next.js + PostgreSQL + Drizzle projects
+- All sensitive files properly excluded from version control
+- Repository clean and professional
+- Reduced risk of security incidents from committed secrets
+- Improved developer experience across different environments (Windows/Mac/Linux, different IDEs)
+
