@@ -12,7 +12,10 @@
       "Bash(powershell -Command \"Get-Content ''C:\\Users\\ryans\\source\\repos\\take-home-projects\\solace\\solace-candidate-assignment-main\\Take-Home-Change-Logs.md'' | Select-Object -Last 100\")",
       "Bash(powershell:*)",
       "Bash(cat:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(docker ps:*)",
+      "Bash(docker compose:*)",
+      "Bash(npx drizzle-kit push:*)"
     ],
     "deny": [],
     "ask": []
