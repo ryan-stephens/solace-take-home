@@ -1,16 +1,15 @@
-import { sql } from "drizzle-orm";
 import db from "../../../../db";
 import { advocates } from "../../../../db/schema";
 
 export async function GET() {
   try {
-    // Get distinct degrees from the database, ordered alphabetically
+    // Get all degrees from the database
     const result = await db
-      .selectDistinct({ degree: advocates.degree })
-      .from(advocates)
-      .orderBy(advocates.degree);
+      .select({ degree: advocates.degree })
+      .from(advocates);
 
-    const degrees = result.map((row) => row.degree);
+    // Extract unique degrees and sort alphabetically
+    const degrees = Array.from(new Set(result.map((row: { degree: string }) => row.degree))).sort();
 
     return Response.json({ degrees });
   } catch (error) {

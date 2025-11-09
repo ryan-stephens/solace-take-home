@@ -1,16 +1,15 @@
-import { sql } from "drizzle-orm";
 import db from "../../../../db";
 import { advocates } from "../../../../db/schema";
 
 export async function GET() {
   try {
-    // Get distinct cities from the database, ordered alphabetically
+    // Get all cities from the database
     const result = await db
-      .selectDistinct({ city: advocates.city })
-      .from(advocates)
-      .orderBy(advocates.city);
+      .select({ city: advocates.city })
+      .from(advocates);
 
-    const cities = result.map((row) => row.city);
+    // Extract unique cities and sort alphabetically
+    const cities = Array.from(new Set(result.map((row: { city: string }) => row.city))).sort();
 
     return Response.json({ cities });
   } catch (error) {
